@@ -11,3 +11,5 @@ class NoInvestmentsException(message: String? = null): UnsupportedOperationExcep
 class IllegalDateException(message: String? = null): IllegalArgumentException(message)
 
 class NotEnoughProjectsException(message: String?): UnsupportedOperationException(message)
+
+class DonationException(message: String?): RuntimeException(message)

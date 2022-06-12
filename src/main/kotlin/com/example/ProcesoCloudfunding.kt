@@ -1,7 +1,8 @@
 package com.example
 
 class ProcesoCloudfunding(
-    var proyectosDisponibles: List<Proyecto>
+    var proyectosDisponibles: List<Proyecto>,
+    var sistemaBancario: SistemaBancario
 ) {
     private var inversiones: List<Inversion> = listOf()
     var criterioDistribucionSeleccionado: CriterioDistribucionDinero = PartesIguales
@@ -36,7 +37,21 @@ class ProcesoCloudfunding(
 
     fun confirmarDistribucionDinero() {
         validarInversiones()
-        inversiones.forEach { it.invertir() }
+        inversiones.forEach {
+            val resultadoTransferencia: String = realizarTransferencia(it.monto, it.proyecto)
+            if (resultadoTransferencia.isNotBlank()) throw DonationException("Ocurrió un error al realizar la donacion al proyecto ${it.proyecto.nombre}")
+            it.invertir()
+        }
+    }
+
+    private fun realizarTransferencia(monto: Double, proyecto: Proyecto): String {
+        val montoAInvertir = monto.toString().split(".", limit = 2)
+        return sistemaBancario.transferir(
+            cuentaOrigenId = "",
+            cuentaDestinoId = proyecto.cuentaBancaria,
+            montoEntero = montoAInvertir.first().toInt(),
+            montoDecimales = montoAInvertir.last().toInt()
+        )
     }
 
     private fun validarInversiones() {
