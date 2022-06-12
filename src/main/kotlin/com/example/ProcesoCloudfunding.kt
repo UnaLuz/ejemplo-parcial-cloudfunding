@@ -31,7 +31,7 @@ class ProcesoCloudfunding(
 
     private fun validarPropuesta(propuestaSeleccionada: PropuestaDeProyectos) {
         if (propuestaSeleccionada.proyectos.size < MIN_CANT_PROYECTOS)
-            throw NotEnoughtProjectsException("No hay proyectos suficientes para invertir, seleccione una propuesta con $MIN_CANT_PROYECTOS o más")
+            throw NotEnoughProjectsException("No hay proyectos suficientes para invertir, seleccione una propuesta con $MIN_CANT_PROYECTOS o más")
     }
 
     fun confirmarDistribucionDinero() {

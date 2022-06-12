@@ -10,4 +10,4 @@ class NoInvestmentsException(message: String? = null): UnsupportedOperationExcep
 
 class IllegalDateException(message: String? = null): IllegalArgumentException(message)
 
-class NotEnoughtProjectsException(message: String?): UnsupportedOperationException(message)
+class NotEnoughProjectsException(message: String?): UnsupportedOperationException(message)
