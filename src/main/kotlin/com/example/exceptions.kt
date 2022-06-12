@@ -2,8 +2,12 @@ package com.example
 
 class NoProjectNameException : IllegalArgumentException()
 
-class NegativeAmountException(message: String? = null) : IllegalArgumentException(message)
+class MoneyValueTooLowException(message: String? = null) : IllegalArgumentException(message)
 
 class NoResponsablesException: IllegalArgumentException()
 
-class IllegalDateException: IllegalArgumentException()
+class NoInvestmentsException(message: String? = null): UnsupportedOperationException(message)
+
+class IllegalDateException(message: String? = null): IllegalArgumentException(message)
+
+class NotEnoughtProjectsException(message: String?): UnsupportedOperationException(message)
