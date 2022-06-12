@@ -35,7 +35,8 @@ object CincuentaYPartesIguales : CriterioDistribucionDinero {
  * (recordemos que el mínimo que requiere el proceso son 1.000 mangos pero no necesariamente 1.000)
  */
 object QuinientosAlAzarYRestoAlAzar : CriterioDistribucionDinero {
-    var primerMonto = 500.0
+    private var primerMonto = 500.0
+
     override fun distribuir(monto: Double, proyectos: List<Proyecto>): List<Inversion> {
         val proyectosMezclados = proyectos.shuffled()
         return listOf(

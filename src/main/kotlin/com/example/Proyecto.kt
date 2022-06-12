@@ -1,6 +1,7 @@
 package com.example
 
 import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 abstract class Proyecto(
     var nombre: String,
@@ -10,7 +11,18 @@ abstract class Proyecto(
     var personasResponsables: List<Persona>,
     var esNacional: Boolean = true,
 ) {
+    var activo: Boolean = true
+
+    /**
+     * Si el proyecto sumó su tercera donación, automáticamente debe pasar a
+     *  estar inactivo por precaución (no debe poder ser elegido la próxima vez
+     *  que ejecute el proceso)
+     *  */
     var cantDonaciones: Int = 0
+        set(value) {
+            field = value
+            if (value == 3) activo = false
+        }
     var montoRecibido = 0.0
 
     init {
@@ -77,7 +89,7 @@ class ProyectoSocial(
      */
     override fun impactoSocialExtra() = 100.0 * aniosDesdeInicio()
 
-    private fun aniosDesdeInicio(): Int = LocalDate.now().minusYears(fechaInicio.year.toLong()).year
+    private fun aniosDesdeInicio(): Int = ChronoUnit.YEARS.between(fechaInicio, LocalDate.now()).toInt()
 
 }
 

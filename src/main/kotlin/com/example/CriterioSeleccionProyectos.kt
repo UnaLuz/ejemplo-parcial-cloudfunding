@@ -40,7 +40,7 @@ object SoloNacionales : CriterioSeleccionProyectos {
  * Una combinatoria de las anteriores (OR)
  */
 object Combinado : CriterioSeleccionProyectos {
-    var criteriosDeSeleccion = listOf(TresConMasImpactoSocial, MasYMenosPlata, SoloNacionales)
+    var criteriosDeSeleccion = listOf(TresConMasImpactoSocial, MasYMenosPlata, SoloNacionales) // Los elige un administrador
     override fun seleccionar(proyectos: List<Proyecto>): List<Proyecto> {
         val proyectosSeleccionados = mutableSetOf<Proyecto>()
         criteriosDeSeleccion.forEach {
